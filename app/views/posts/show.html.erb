@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p><%= @post.title %></p>
+<p><%= @post.content %></p>
+<%= image_tag @post.image.url(:medium) %>
+
+<div class="tags">
+  <%=raw @post.all_tags %>
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
