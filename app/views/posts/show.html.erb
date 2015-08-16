@@ -2,6 +2,7 @@
 
 <p><%= @post.title %></p>
 <p><%= @post.content %></p>
+<%= image_tag @post.image.url(:medium) %>
 
 <div class="tags">
   <%=raw @post.all_tags %>

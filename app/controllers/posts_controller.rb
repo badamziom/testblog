@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  attr_accessor :image_file_name
   # GET /posts
   # GET /posts.json
   def index
@@ -69,6 +69,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :all_tags)
+      params.require(:post).permit(:title, :content, :all_tags, :image)
     end
 end
