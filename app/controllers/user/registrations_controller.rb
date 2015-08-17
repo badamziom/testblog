@@ -2,6 +2,8 @@ class User::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+  before_filter :configure_permitted_parameters
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -57,4 +59,14 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+
+  # my custom fields are :name, :heard_how
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).push(:first_name, :last_name, :email, :password, :password_confirmation, :city, :avatar)
+    devise_parameter_sanitizer.for(:account_update).push(:first_name, :last_name, :email, :password, :password_confirmation, :city, :avatar)
+  end
+
+
 end
