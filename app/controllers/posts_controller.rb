@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -25,6 +26,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
@@ -61,6 +63,26 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def create_comment
+    @post = Post.find(comment_params['post_id'])
+    @comment = @post.comments.create(comment_params)
+    @comment.user = current_user
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to post_path(:id => comment_params['post_id']), notice: 'Comment was successfully created.' }
+        format.json { redirect_to post_path(:id => comment_params['post_id']) }
+      else
+        flash.alert = 'Can not add comment right now'
+        flash.alert = comment_params
+        format.html { redirect_to post_path(:id => comment_params['post_id']) }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -71,4 +93,8 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :all_tags, :image)
     end
+
+  def comment_params
+    params.require(:comment).permit(:user, :content, :status, :post_id)
+  end
 end

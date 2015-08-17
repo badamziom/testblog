@@ -19,3 +19,4 @@
 /.idea
 /public/system/posts/images/*
 public/system/users/avatars/*
+/public/system/achievements/images/*

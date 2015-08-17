@@ -1,0 +1,6 @@
+<%= render partial: 'show_comment_list' %>
+<% if user_signed_in?  %>
+    <%= render partial: 'new_comment_form' %>
+<% else %>
+    <p>You have to be logged to add comments</p>
+<% end %>
