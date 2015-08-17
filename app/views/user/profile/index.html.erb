@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Profile</h1>
+
+<table>
+  <thead>
+    <caption>User information</caption>
+    <tr>
+      <th>Avatar</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>City</th>
+      <th>Posts added</th>
+      <th>Comments added</th>
+      <th>Sign ins</th>
+      <th>Registered since</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= image_tag @user.avatar.url(:medium) %></td>
+        <td><%= @user.first_name %></td>
+        <td><%= @user.last_name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.city %></td>
+        <td><%= @user.posts.count %></td>
+        <td><%= @user.comments.count %></td>
+        <td><%= @user.sign_in_count %></td>
+        <td><%= @user.created_at %></td>
+      </tr>
+  </tbody>
+</table>
+
+<br>

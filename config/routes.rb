@@ -4,13 +4,14 @@ Rails.application.routes.draw do
 
   post 'posts/comment-new' => 'posts#create_comment', as: 'create_comment'
 
-  devise_for :users
+  devise_for :user, :controllers => { :registrations => "user/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'home#show_newest_posts'
 
+  get 'user/profile' => 'user/profile#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
