@@ -1,0 +1,25 @@
+<% if @post.comments.nil? then %>
+    <div class="container">
+      <div class="col-md-11">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Information</h3>
+          </div>
+          <div class="panel-body">
+            No comments
+          </div>
+        </div>
+      </div>
+    </div>
+<% else %>
+    <div class="container">
+      <% @post.comments.order(created_at: :desc).each do |comment| %>
+          <div class="col-md-6 col-md-offset-3">
+            <h3><%= comment.user.email %></h3>
+            <p class="text-primary"><%= comment.content %></p>
+            <p class="text-primary"><%= comment.created_at %></p>
+          </div>
+      <% end %>
+    </div>
+
+<% end %>
