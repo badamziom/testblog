@@ -18,3 +18,4 @@
 /config/database.yml
 /.idea
 /public/system/posts/images/*
+/public/system/achievements/images/*
